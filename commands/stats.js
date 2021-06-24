@@ -21,28 +21,12 @@ module.exports = {
             await page.goto(url);
 
             const result = await page.evaluate(() => {
-                const stats = ['Wins', 'Kills', 'Deaths', 'Assists', 'Headshots', 'Score/Round', 'Kills/Round', 'Clutches', 'Flawless', 'Most Kills (Match)']
+                const stats = ['Wins', 'Kills', 'Deaths', 'Assists', 'Headshots', 'Score/Round', 'Kills/Round', 'Clutches', 'Flawless', 'Most Kills (Match)'];
                 const arr = [];
-                let val = document.querySelector('[title="Wins"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Kills"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Deaths"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Assists"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Headshots"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Score/Round"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Kills/Round"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Clutches"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Flawless"]').nextElementSibling.innerHTML;
-                arr.push(val);
-                val = document.querySelector('[title="Most Kills (Match)"]').nextElementSibling.innerHTML;
-                arr.push(val);
+                for(const stat of stats){
+                    let val = document.querySelector('[title="'+stat+'"]').nextElementSibling.innerHTML;
+                    arr.push(val);
+                }
                 return arr;
             })
             let ret = "";
