@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 
 module.exports = {
     name: 'link',

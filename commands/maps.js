@@ -1,17 +1,15 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 module.exports = {
     name: 'maps',
     description: "valorant player stat",
 
     async execute(client, message, args, discord) {
-        message.channel.send('Loading Data');
-        args = args.replace(",", "%20");
-        const pass = args.split("#");
-        const id = pass[0];
-        const tag = pass[1];
-
-        await scrapperProduct('https://tracker.gg/valorant/profile/riot/' + id + '%23' + tag + '/maps');
+        message.channel.send('Fetching Data...');
+        
+        const target = JSON.parse(fs.readFileSync('./data/profile.json'));
+        await scrapperProduct('https://tracker.gg/valorant/profile/riot/' + target.id + '%23' + target.tag + '/maps');
 
 
 
@@ -30,12 +28,11 @@ module.exports = {
             })
             for(let i=0; i<count; i++){
                 await page.screenshot({
-                    path: 'img'+i+'.png',
+                    path: './images/img'+i+'.png',
                     type: 'png',
                     clip: {x:255 , y:720+((height+5)*i), width:1410, height: height}
                 });
-                console.log(i);
-                message.channel.send({files: ["img"+i+".png"]});
+                message.channel.send({files: ["./images/img"+i+".png"]});
             }
             
 

@@ -9,4 +9,5 @@ module.exports = (client, Discord) =>{
             client.commands.set(command.name,command);
         }
     }
+    console.log('command_handler');
 }
