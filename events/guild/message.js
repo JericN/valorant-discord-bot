@@ -6,5 +6,4 @@ module.exports = (Discord, client, message) => {
 	const args = msg.toString();
 	const command = client.commands.get(cmd);
 	if (command) command.execute(client, message, args, Discord);
-	console.log('message recieved');
 };

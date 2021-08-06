@@ -6,13 +6,10 @@ module.exports = {
 	description: 'valorant player stat',
 
 	async execute(client, message, args, discord) {
-		message.channel.send('Loading Data');
-
 		const target = JSON.parse(fs.readFileSync('./data/profile.json'));
 		await scrapperProduct('https://tracker.gg/valorant/profile/riot/' + target.id + '%23' + target.tag + '/agents');
 
 		async function scrapperProduct(url) {
-			message.channel.send('Fetching Data...');
 			const browser = await puppeteer.launch();
 			const page = await browser.newPage();
 			await page.setViewport({ width: 1920, height: 2160 });
