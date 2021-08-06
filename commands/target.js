@@ -8,9 +8,9 @@ module.exports = {
 		const fs = require('fs');
 		const target = JSON.parse(fs.readFileSync('./data/profile.json'));
 		if (!args) {
-			message.channel.send('Current Profile: ' + target.id.replace('%20', ' ') + '#' + target.tag);
+			message.channel.send('Current Profile: ' + target.id.replaceAll('%20', ' ') + '#' + target.tag);
 		} else {
-			args = args.replace(',', '%20');
+			args = args.replaceAll(',', '%20');
 			const pass = args.split('#');
 			let new_target = {
 				id: pass[0],
@@ -18,7 +18,7 @@ module.exports = {
 			};
 			let data = JSON.stringify(new_target);
 			fs.writeFileSync('./data/profile.json', data);
-			message.channel.send('Current Profile: ' + pass[0].replace('%20', ' ') + '#' + pass[1]);
+			message.channel.send('Current Profile: ' + pass[0].replaceAll('%20', ' ') + '#' + pass[1]);
 		}
 	},
 };
