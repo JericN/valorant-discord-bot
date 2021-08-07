@@ -5,23 +5,6 @@ class data {
 	acts;
 }
 
-async function checkProfile(page) {
-	let isAvailable = await page.evaluate(() => {
-		let el = document.querySelector('.error-message');
-		return el ? true : false;
-	});
-	if (isAvailable) {
-		tool.fetchingData('delete');
-		await page.screenshot({
-			path: './images/img.png',
-			type: 'png',
-			clip: { x: 500, y: 950, width: 920, height: 260 },
-		});
-		message.channel.send({ files: ['./images/img.png'] });
-		console.log('404');
-		return;
-	}
-}
 async function timeout(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -38,6 +21,23 @@ async function progress(step) {
 			message.edit(data.rank[step]);
 		}
 	});
+}
+async function checkProfile(page) {
+	try {
+		await page.waitForSelector('.error-message', { timeout: 3000 });
+	} catch (error) {
+		return true;
+	}
+
+	console.log('Profile 404');
+	progress(8);
+	await page.screenshot({
+		path: './images/img.png',
+		type: 'png',
+		clip: { x: 500, y: 950, width: 920, height: 260 },
+	});
+	data.channel.send({ files: ['./images/img.png'] });
+	return false;
 }
 
 module.exports = {

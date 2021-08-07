@@ -5,7 +5,7 @@ module.exports = {
 	name: 'var',
 	description: 'valorant player stat',
 
-	async execute(client, message, args, discord) {
+	async execute(channel, args) {
 		var var_content = JSON.parse(fs.readFileSync('./data/variables.json'));
 		var args = args.toLowerCase().split(',');
 		for (key in var_content) {
@@ -14,6 +14,6 @@ module.exports = {
 			}
 		}
 		fs.writeFileSync('./data/variables.json', JSON.stringify(var_content));
-		message.channel.send('Variable Changed -> ' + args[0] + ' : ' + args[1]);
+		channel.send('Variable Changed -> ' + args[0] + ' : ' + args[1]);
 	},
 };
