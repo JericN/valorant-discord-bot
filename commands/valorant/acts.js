@@ -22,7 +22,7 @@ module.exports = {
 			await tool.timeout(vars.tab_click_delay);
 			for (var i = 0; i < tool.data.acts.length; i++) {
 				await page.click('.season-selector ul a:nth-child(' + (i + 2) + ')');
-				await tool.timeout(vars.act_click_delay);
+				await page.waitForSelector('.valorant-rank-icon');
 				if ((await page.$('.notice')) != null) {
 					break;
 				}

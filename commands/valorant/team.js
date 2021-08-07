@@ -20,7 +20,7 @@ module.exports = {
 			await tool.timeout(vars.tab_click_delay);
 			await page.click('.trn-mode-selector a:nth-child(1)');
 			await tool.timeout(vars.tab_click_delay);
-			await page.waitForSelector('.acquaintances.card');
+			await page.waitForSelector('.acquaintances__list-player');
 			const height = await page.evaluate(() => {
 				let height = document.querySelector('.acquaintances.card').clientHeight;
 				return height;
