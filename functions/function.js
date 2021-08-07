@@ -1,4 +1,7 @@
 class data {
+	profile_id;
+	profile_tag;
+	profile_page;
 	channel;
 	id;
 	rank;

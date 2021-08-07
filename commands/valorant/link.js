@@ -5,7 +5,7 @@ module.exports = {
 
 	async execute(channel, args, client, discord) {
 		const profile = JSON.parse(fs.readFileSync('./data/profile.json'));
-		if (profile.tag == '' && profile.id == '') {
+		if (tool.data.profile_id == null && tool.data.profile_tag == null) {
 			channel.send('No Profile Selected');
 			return;
 		}

@@ -1,5 +1,4 @@
 const fs = require('fs');
-const tool = require('../functions/function.js');
 
 module.exports = (client, Discord) => {
 	const load_dir = (dirs) => {
