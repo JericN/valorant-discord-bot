@@ -1,27 +1,27 @@
-class data {
-	profile_id;
-	profile_tag;
-	profile_page;
-	channel;
-	id;
-	rank;
-	acts;
-}
+var dataSet = {
+	profile_id: null,
+	profile_tag: null,
+	profile_page: null,
+	channel: null,
+	id: null,
+	rank: null,
+	acts: null,
+};
 
-async function timeout(ms) {
+async function waitFor(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function progress(step) {
 	if (step == 0) {
-		data.channel.send(data.rank[step]);
+		dataSet.channel.send(dataSet.rank[step]);
 		return;
 	}
-	data.channel.messages.fetch(data.id).then((message) => {
-		if (data.rank[step] == 'delete') {
+	dataSet.channel.messages.fetch(dataSet.id).then((message) => {
+		if (dataSet.rank[step] == 'delete') {
 			message.delete();
 		} else {
-			message.edit(data.rank[step]);
+			message.edit(dataSet.rank[step]);
 		}
 	});
 }
@@ -31,22 +31,19 @@ async function checkProfile(page) {
 	} catch (error) {
 		return true;
 	}
-
-	console.log('Profile 404');
 	progress(8);
 	await page.screenshot({
 		path: './images/img.png',
 		type: 'png',
 		clip: { x: 500, y: 950, width: 920, height: 260 },
 	});
-	data.channel.send({ files: ['./images/img.png'] });
+	dataSet.channel.send({ files: ['./images/img.png'] });
 	return false;
 }
 
 module.exports = {
-	name: 'function',
-	timeout,
+	dataSet,
+	waitFor,
 	progress,
 	checkProfile,
-	data,
 };

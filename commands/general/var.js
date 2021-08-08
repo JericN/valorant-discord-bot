@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 module.exports = {
@@ -6,9 +5,9 @@ module.exports = {
 	description: 'valorant player stat',
 
 	async execute(channel, args) {
-		var var_content = JSON.parse(fs.readFileSync('./data/variables.json'));
-		var args = args.toLowerCase().split(',');
-		for (key in var_content) {
+		const var_content = JSON.parse(fs.readFileSync('./data/variables.json'));
+		args = args.toLowerCase().split(',');
+		for (let key in var_content) {
 			if (args[0] == key) {
 				var_content[key] = args[1];
 			}

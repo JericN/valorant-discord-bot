@@ -2,7 +2,7 @@ module.exports = {
 	name: 'valo',
 	description: 'paltog',
 
-	async execute(channel, message) {
+	async execute(channel) {
 		channel.messages.fetch(channel.lastMessageID).then((message) => {
 			message.delete();
 		});

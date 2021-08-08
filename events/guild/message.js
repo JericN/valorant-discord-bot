@@ -6,5 +6,5 @@ module.exports = (Discord, client, message) => {
 	const args = msg.toString();
 	const command = client.commands.get(cmd);
 	const channel = message.channel;
-	if (command) command.execute(channel, args, client, Discord);
+	if (command) command.execute(channel, args, message, client, Discord);
 };

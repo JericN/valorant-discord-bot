@@ -17,6 +17,19 @@
     "discord.js": "^12.5.3",
     "puppeteer": "^10.0.0",
     "request": "^2.88.2",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "tesseract.js": "^2.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JericNarte/Discord-Bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JericNarte/Discord-Bot/issues"
+  },
+  "homepage": "https://github.com/JericNarte/Discord-Bot#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
